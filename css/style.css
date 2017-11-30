@@ -1,0 +1,98 @@
+html,
+body {
+    margin:0;
+    width: 100%;
+    height:100%;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#gameScreen {
+    position:fixed;
+    background-color:#999999;
+    left:0px;
+	top:0px;
+	width:100%;
+	height:100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#areaStats {
+    position:absolute;
+    background-color:#00ff00;
+    outline: 10px solid #0000ff;
+    margin-left:1%;
+    margin-top:15px;
+    width:48%;
+    height:100px;
+}
+
+#goldDisplay {
+    position: absolute;
+    background-color:#ffff00;
+    background-image: url(../img/goldcoin.png);
+    background-repeat: no-repeat;
+    background-size:40px 40px;
+    padding-left: 40px;
+    font-size:40px;
+    line-height: 100%;
+}
+
+#expDisplay {
+    position: absolute;
+    background-color:#ff00ff;
+    background-image: url(../img/book.png);
+    background-repeat: no-repeat;
+    background-size:40px 40px;
+    background-position-x: 100%;
+    right:0%;
+    padding-right: 45px;
+    font-size:40px;
+    line-height: 100%;
+}
+
+#areaMonster {
+    position:absolute;
+    background-color:#ff0000;
+    left:50%;
+    width:50%;
+    height:100%;
+}
+
+#containerMonster {
+    position: absolute;
+    margin: auto;
+    width: 300px;
+    height: 300px;
+    top: 40%;
+    left: 50%;
+    background-color: purple;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.monster {
+    width:100%;
+	height:100%;
+    background-color:#ffff00;
+	/* background-image:url(../img/goldbar.png); */
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:95%;
+    cursor:pointer;
+    /* visibility: hidden; */
+}
+
+.monster:hover {
+	background-size:100%;
+}
+
+.monster:active {
+	background-size:95%;
+}
