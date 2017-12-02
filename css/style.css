@@ -18,6 +18,7 @@ body {
 	width:100%;
 	height:100%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:40px;
 }
 
 #areaStats {
@@ -27,7 +28,7 @@ body {
     margin-left:1%;
     margin-top:15px;
     width:48%;
-    height:100px;
+    height:80px;
 }
 
 #goldDisplay {
@@ -37,7 +38,6 @@ body {
     background-repeat: no-repeat;
     background-size:40px 40px;
     padding-left: 40px;
-    font-size:40px;
     line-height: 100%;
 }
 
@@ -47,19 +47,109 @@ body {
     background-image: url(../img/book.png);
     background-repeat: no-repeat;
     background-size:40px 40px;
+    bottom:0;
+    padding-left: 40px;
+    line-height: 100%;
+}
+
+#damageDisplay {
+    position: absolute;
+    background-color:#ff0000;
+    background-image: url(../img/sword.png);
+    background-repeat: no-repeat;
+    background-size:40px 40px;
     background-position-x: 100%;
-    right:0%;
-    padding-right: 45px;
-    font-size:40px;
+    right:0;
+    padding-right: 40px;
     line-height: 100%;
 }
 
 #areaMonster {
     position:absolute;
-    background-color:#ff0000;
+    background-color:#00eeff;
     left:50%;
     width:50%;
     height:100%;
+}
+
+#dungeonHome {
+    position: absolute;
+    margin:0 auto;
+    display: inline-block;
+    top: 5px;
+    left: 5px;
+    background-color: #ffc0cb;
+}
+
+#dungeon {
+    position: absolute;
+    margin: auto;
+    width: 50%;
+    height: 52px;
+    top: 1%;
+    left: 50%;
+    background-color: #ff9900;
+    transform: translate(-50%);
+}
+
+.levelSelect {
+    margin:0 auto;
+    display: inline-block;
+    min-width: 48px;
+    background-color: #ffc0cb;
+    border: 2px solid #808080;
+    text-align: center;
+    cursor:crosshair;
+}
+
+.levelSelect:hover {
+    outline: 4px solid black;
+}
+
+.levelSelect:active {
+    outline: 4px solid red;
+}
+
+#dungeonKillsDisplay {
+    position: absolute;
+    top: 9%;
+    left: 50%;
+    transform: translate(-50%);
+    display: inline-block;
+    background-color:#ffff00;
+    background-image: url(../img/skull.png);
+    background-repeat: no-repeat;
+    background-size:40px 40px;
+    background-position: -2px 2px;
+    padding-left: 40px;
+    line-height: 100%;
+}
+
+#monsterStatsDisplay {
+    position: absolute;
+    margin: auto;
+    width: 75%;
+    height: 50px;
+    top: 20%;
+    left: 50%;
+    background-color: #ff0000;
+    transform: translate(-50%, -50%);
+}
+
+#monsterHpBar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #00ff00;
+}
+
+#monster\.id {
+    position: absolute;
+}
+
+#monster\.hp {
+    position: absolute;
+    right: 0%;
 }
 
 #containerMonster {
@@ -67,7 +157,7 @@ body {
     margin: auto;
     width: 300px;
     height: 300px;
-    top: 40%;
+    top: 50%;
     left: 50%;
     background-color: purple;
     -webkit-transform: translate(-50%, -50%);
@@ -85,7 +175,7 @@ body {
     background-repeat:no-repeat;
     background-position:center;
     background-size:95%;
-    cursor:pointer;
+    cursor:url(../img/sword.png), auto;
     /* visibility: hidden; */
 }
 
