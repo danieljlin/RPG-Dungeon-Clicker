@@ -76,7 +76,7 @@ body {
     position: absolute;
     margin:0 auto;
     display: inline-block;
-    top: 5px;
+    top: 1%;
     left: 5px;
     background-color: #ffc0cb;
 }
@@ -84,8 +84,9 @@ body {
 #dungeon {
     position: absolute;
     margin: auto;
-    width: 50%;
-    height: 52px;
+    overflow: hidden;
+    width: 55%;
+    height: 56px;
     top: 1%;
     left: 50%;
     background-color: #ff9900;
@@ -97,22 +98,22 @@ body {
     display: inline-block;
     min-width: 48px;
     background-color: #ffc0cb;
-    border: 2px solid #808080;
     text-align: center;
     cursor:crosshair;
+    border: 4px solid white;
 }
 
 .levelSelect:hover {
-    outline: 4px solid black;
+    border: 4px solid black;
 }
 
 .levelSelect:active {
-    outline: 4px solid red;
+    border: 4px solid red;
 }
 
 #dungeonKillsDisplay {
     position: absolute;
-    top: 9%;
+    top: 10%;
     left: 50%;
     transform: translate(-50%);
     display: inline-block;
@@ -130,7 +131,7 @@ body {
     margin: auto;
     width: 75%;
     height: 50px;
-    top: 20%;
+    top: 21%;
     left: 50%;
     background-color: #ff0000;
     transform: translate(-50%, -50%);

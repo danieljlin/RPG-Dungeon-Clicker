@@ -3,16 +3,21 @@ var gameC = {};
 
 gameC.monsters = {};
 gameC.monsters["Trainer"] = { goldBase: 0, expBase: 0, hpBase: 1, source: 'img/0trainer.png' };
-gameC.monsters["Beetle"] = { goldBase: 1, expBase: 3, hpBase: 3, source: 'img/1beetle.png' };
-gameC.monsters["Frog"] = { goldBase: 1, expBase: 1, hpBase: 1, source: 'img/1frog.png' };
-gameC.monsters["Pig"] = { goldBase: 1, expBase: 5, hpBase: 5, source: 'img/1pig.png' };
-gameC.monsters["Rat"] = { goldBase: 1, expBase: 2, hpBase: 2, source: 'img/1rat.png' };
-gameC.monsters["Sheep"] = { goldBase: 1, expBase: 4, hpBase: 4, source: 'img/1sheep.png' };
+gameC.monsters["Beetle"] = { goldBase: 1, expBase: 5, hpBase: 5, source: 'img/1beetle.png' };
+gameC.monsters["Frog"] = { goldBase: 1, expBase: 5, hpBase: 3, source: 'img/1frog.png' };
+gameC.monsters["Pig"] = { goldBase: 1, expBase: 5, hpBase: 7, source: 'img/1pig.png' };
+gameC.monsters["Rat"] = { goldBase: 1, expBase: 5, hpBase: 4, source: 'img/1rat.png' };
+gameC.monsters["Sheep"] = { goldBase: 1, expBase: 5, hpBase: 6, source: 'img/1sheep.png' };
+gameC.monsters["Scorpion"] = { goldBase: 10, expBase: 20, hpBase: 100, source: 'img/1_scorpion.png' };
 
 gameC.dungeons = [
     { level: "Home", min: 0, max: 0, goldMult: 1, expMult: 1, hpMult: 1, killsTnl: 5 },
     { level: 1, min: 1, max: 5, goldMult: 1, expMult: 1, hpMult: 1, killsTnl: 5 },
-    { level: 2, min: 1, max: 5, goldMult: 1, expMult: 1, hpMult: 1.5, killsTnl: 5 }
+    { level: 2, min: 1, max: 5, goldMult: 1, expMult: 1, hpMult: 2, killsTnl: 5 },
+    { level: 3, min: 1, max: 5, goldMult: 1, expMult: 1, hpMult: 3, killsTnl: 5 },
+    { level: 4, min: 1, max: 5, goldMult: 1, expMult: 1, hpMult: 4, killsTnl: 5 },
+    { level: 5, min: 6, max: 6, goldMult: 1, expMult: 1, hpMult: 1, killsTnl: 1 },
+    { level: 6, min: 6, max: 6, goldMult: 1, expMult: 1, hpMult: 2, killsTnl: 5 }
 ];
 
 gameC.player = [
@@ -20,27 +25,30 @@ gameC.player = [
     { level: 1, expTnl: 10 },
     { level: 2, expTnl: 20 },
     { level: 3, expTnl: 40 },
-    { level: 4, expTnl: 1000 }
+    { level: 4, expTnl: 100 },
+    { level: 5, expTnl: 1000 }
 ];
 
 game.monsters = {};
 
 game.dungeons = [
-    { level: 0, kills: 0 }
+    { level: "Home", kills: 0 }
 ];
 
 game.player = {
     gold: 0,
     exp: 0,
     expClick: 1,
-    damage: 0,
-    level: 0
+    level: 0,
+    damage: 0
 }
 
 loadMonsters();
 game.monsterArray = Object.keys(game.monsters);
 game.monsterChildren = document.getElementById("containerMonster").children;
 startHome();
+
+loadCheats();
 
 function loadMonsters() {
     for (var monster in gameC.monsters) {
@@ -68,7 +76,7 @@ function loadMonsters() {
 function startHome() {
     game.currentDungeon = "Home";
     document.getElementById("Trainer").style.display = "inherit";
-    document.getElementById("dungeonHome").style.outline = "4px solid black";
+    document.getElementById("dungeonHome").style.border = "4px solid black";
     document.getElementById("dungeonHome").addEventListener("click", function (event) {
         switchDungeon(event);
     });
@@ -78,17 +86,18 @@ function startHome() {
 }
 
 function onMonsterClick(event) {
-    if (event.target.id === "Trainer") {
-        game.dungeons[0].kills++;
-        document.getElementById("dungeon.kills").innerHTML = game.dungeons[0].kills;
-        document.getElementById("player.exp").innerHTML =
-            game.player.exp += game.player.expClick;
-        isLevelUp();
-        if (game.player.exp === 5) {
-            unlockDungeonLevel();
+    if (event.target.className === "monster ")
+        if (event.target.id === "Trainer") {
+            game.dungeons[0].kills++;
+            document.getElementById("dungeon.kills").innerHTML = game.dungeons[0].kills;
+            document.getElementById("player.exp").innerHTML =
+                game.player.exp += game.player.expClick;
+            isLevelUp();
+            if (game.player.exp === 5) {
+                unlockDungeonLevel();
+            }
+            return;
         }
-        return;
-    }
     document.getElementById("monster.hp").innerHTML =
         game.monsters[event.target.id].hp -= game.player.damage;
     document.getElementById("monsterHpBar").style.width =
@@ -124,7 +133,8 @@ function reviveRandomMonster() {
     }
     getRandomInteger(gameC.dungeons[game.currentDungeon].min, gameC.dungeons[game.currentDungeon].max);
     game.randomMonster = game.monsterArray[game.randomInteger];
-    game.monsters[game.randomMonster].hp = game.monsters[game.randomMonster].hpMax;
+    game.monsters[game.randomMonster].hp = game.monsters[game.randomMonster].hpMax =
+        Math.floor(gameC.monsters[game.randomMonster].hpBase * gameC.dungeons[game.currentDungeon].hpMult);
     document.getElementById(game.randomMonster).style.display = "inherit";
     document.getElementById("monster.id").innerHTML = game.randomMonster;
     document.getElementById("monster.hp").innerHTML = game.monsters[game.randomMonster].hp;
@@ -149,24 +159,26 @@ function unlockDungeonLevel() {
     dungeonDiv.id = "dungeon" + dungeonLevel;
     dungeonDiv.className += "levelSelect ";
     document.getElementById("dungeon").appendChild(dungeonDiv);
-    game.dungeons.push({level: dungeonLevel, kills: 0});
+    game.dungeons.push({ level: dungeonLevel, kills: 0 });
 }
 
 function switchDungeon(event) {
-    if (event.target.innerHTML === game.currentDungeon) {
-        return;
-    }
-    hideAllMonsters();
-    document.getElementById("dungeonKillsDisplay").style.display = "none";
-    document.getElementById("dungeon" + game.currentDungeon).style = "inherit";
-    game.currentDungeon = event.target.innerHTML;
-    document.getElementById("dungeon" + game.currentDungeon).style.outline = "4px solid black";
-    reviveRandomMonster();
-    if (game.dungeons[game.currentDungeon].kills < gameC.dungeons[game.currentDungeon].killsTnl) {
-        game.dungeons[game.currentDungeon].kills = 0;
-        document.getElementById("dungeon.kills").innerHTML = 0;
-        document.getElementById("dungeon.killsTnl").innerHTML = gameC.dungeons[game.currentDungeon].killsTnl;
-        document.getElementById("dungeonKillsDisplay").style.display = "inline";
+    if (event.target.className === "levelSelect ") {
+        if (event.target.innerHTML === game.currentDungeon) {
+            return;
+        }
+        hideAllMonsters();
+        document.getElementById("dungeonKillsDisplay").style.display = "none";
+        document.getElementById("dungeon" + game.currentDungeon).style = "inherit";
+        game.currentDungeon = event.target.innerHTML;
+        document.getElementById("dungeon" + game.currentDungeon).style.border = "4px solid black";
+        reviveRandomMonster();
+        if (game.dungeons[game.currentDungeon].kills < gameC.dungeons[game.currentDungeon].killsTnl) {
+            game.dungeons[game.currentDungeon].kills = 0;
+            document.getElementById("dungeon.kills").innerHTML = 0;
+            document.getElementById("dungeon.killsTnl").innerHTML = gameC.dungeons[game.currentDungeon].killsTnl;
+            document.getElementById("dungeonKillsDisplay").style.display = "inline";
+        }
     }
 }
 
@@ -183,5 +195,57 @@ function isLevelUp() {
         document.getElementById("player.expTnl").innerHTML = gameC.player[game.player.level].expTnl;
         game.player.damage++;
         document.getElementById("player.damage").innerHTML = game.player.damage;
+    }
+}
+
+function loadCheats() {
+    game.cheats = true;
+    document.getElementById("goldDisplay").addEventListener("click", function (event) { cheatGold(event); });
+    document.getElementById("expDisplay").addEventListener("click", function (event) { cheatLevel(event); });
+    document.getElementById("damageDisplay").addEventListener("click", function (event) { cheatDamage(event); });
+    document.getElementById("dungeonKillsDisplay").addEventListener("click", function (event) { cheatDungeon(event); });
+}
+
+function cheatGold(event) {
+    if (game.cheats === true && event.ctrlKey) {
+        game.player.gold += 1000;
+        document.getElementById("player.gold").innerHTML = game.player.gold;
+    }
+}
+
+function cheatLevel(event) {
+    if (game.cheats === true && event.ctrlKey) {
+        game.player.exp = gameC.player[game.player.level].expTnl;
+        document.getElementById("player.exp").innerHTML = game.player.exp;
+        isLevelUp();
+    }
+}
+
+function cheatDamage(event) {
+    if (game.cheats === true && event.ctrlKey) {
+        game.player.damage += 1000;
+        document.getElementById("player.damage").innerHTML = game.player.damage;
+    }
+}
+
+function cheatDungeon(event) {
+    if (game.cheats === true && event.ctrlKey) {
+        if (game.currentDungeon === "Home") {
+            game.dungeons[0].kills = gameC.dungeons[0].killsTnl;
+        }
+        else {
+            game.dungeons[game.currentDungeon].kills = gameC.dungeons[game.currentDungeon].killsTnl;
+        }
+        unlockDungeonLevel();
+        hideAllMonsters();
+        document.getElementById("dungeonKillsDisplay").style.display = "none";
+        document.getElementById("dungeon" + game.currentDungeon).style = "inherit";
+        game.currentDungeon = document.getElementById("dungeon").lastChild.innerHTML;
+        document.getElementById("dungeon" + game.currentDungeon).style.border = "4px solid black";
+        reviveRandomMonster();
+        game.dungeons[game.currentDungeon].kills = 0;
+        document.getElementById("dungeon.kills").innerHTML = 0;
+        document.getElementById("dungeon.killsTnl").innerHTML = gameC.dungeons[game.currentDungeon].killsTnl;
+        document.getElementById("dungeonKillsDisplay").style.display = "inline";
     }
 }
