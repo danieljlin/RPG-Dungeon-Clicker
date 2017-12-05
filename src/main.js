@@ -3,11 +3,11 @@ var gameC = {};
 
 gameC.monsters = {};
 gameC.monsters["Trainer"] = { goldBase: 0, expBase: 0, hpBase: 1, source: 'img/0trainer.png' };
-gameC.monsters["Beetle"] = { goldBase: 1, expBase: 5, hpBase: 5, source: 'img/1beetle.png' };
-gameC.monsters["Frog"] = { goldBase: 1, expBase: 5, hpBase: 3, source: 'img/1frog.png' };
-gameC.monsters["Pig"] = { goldBase: 1, expBase: 5, hpBase: 7, source: 'img/1pig.png' };
-gameC.monsters["Rat"] = { goldBase: 1, expBase: 5, hpBase: 4, source: 'img/1rat.png' };
-gameC.monsters["Sheep"] = { goldBase: 1, expBase: 5, hpBase: 6, source: 'img/1sheep.png' };
+gameC.monsters["Beetle"] = { goldBase: 1, expBase: 5, hpBase: 10, source: 'img/1beetle.png' };
+gameC.monsters["Frog"] = { goldBase: 1, expBase: 5, hpBase: 8, source: 'img/1frog.png' };
+gameC.monsters["Pig"] = { goldBase: 1, expBase: 5, hpBase: 12, source: 'img/1pig.png' };
+gameC.monsters["Rat"] = { goldBase: 1, expBase: 5, hpBase: 9, source: 'img/1rat.png' };
+gameC.monsters["Sheep"] = { goldBase: 1, expBase: 5, hpBase: 11, source: 'img/1sheep.png' };
 gameC.monsters["Scorpion"] = { goldBase: 10, expBase: 20, hpBase: 100, source: 'img/1_scorpion.png' };
 
 gameC.dungeons = [
@@ -17,7 +17,9 @@ gameC.dungeons = [
     { level: 3, min: 1, max: 5, goldMult: 1, expMult: 1, hpMult: 3, killsTnl: 5 },
     { level: 4, min: 1, max: 5, goldMult: 1, expMult: 1, hpMult: 4, killsTnl: 5 },
     { level: 5, min: 6, max: 6, goldMult: 1, expMult: 1, hpMult: 1, killsTnl: 1 },
-    { level: 6, min: 6, max: 6, goldMult: 1, expMult: 1, hpMult: 2, killsTnl: 5 }
+    { level: 6, min: 6, max: 6, goldMult: 1, expMult: 1, hpMult: 2, killsTnl: 5 },
+    { level: 7, min: 6, max: 6, goldMult: 1, expMult: 1, hpMult: 2, killsTnl: 5 },
+    { level: 8, min: 6, max: 6, goldMult: 1, expMult: 1, hpMult: 2, killsTnl: 5 }
 ];
 
 gameC.player = [
@@ -82,6 +84,12 @@ function startHome() {
     });
     document.getElementById("dungeon").addEventListener("click", function (event) {
         switchDungeon(event);
+    });
+    document.getElementById("dungeonLeft").addEventListener("click", function () {
+        dungeonLeft();
+    });
+    document.getElementById("dungeonRight").addEventListener("click", function () {
+        dungeonRight();
     });
 }
 
@@ -172,6 +180,9 @@ function switchDungeon(event) {
         document.getElementById("dungeon" + game.currentDungeon).style = "inherit";
         game.currentDungeon = event.target.innerHTML;
         document.getElementById("dungeon" + game.currentDungeon).style.border = "4px solid black";
+        if (game.currentDungeon != "Home") {
+            document.getElementById("dungeon").style.left = (56 * (3 - game.currentDungeon)) + "px";
+        }
         reviveRandomMonster();
         if (game.dungeons[game.currentDungeon].kills < gameC.dungeons[game.currentDungeon].killsTnl) {
             game.dungeons[game.currentDungeon].kills = 0;
@@ -180,6 +191,18 @@ function switchDungeon(event) {
             document.getElementById("dungeonKillsDisplay").style.display = "inline";
         }
     }
+}
+
+function dungeonLeft() {
+    var styleLeft = document.getElementById("dungeon").style.left;
+    document.getElementById("dungeon").style.left =
+        Math.min(112, parseInt(styleLeft, 10) + 280) + "px";
+}
+
+function dungeonRight() {
+    var styleLeft = document.getElementById("dungeon").style.left;
+    document.getElementById("dungeon").style.left =
+        Math.max(-56 * (game.dungeons.length - 4), parseInt(styleLeft, 10) - 280) + "px";
 }
 
 function hideAllMonsters() {
@@ -247,5 +270,6 @@ function cheatDungeon(event) {
         document.getElementById("dungeon.kills").innerHTML = 0;
         document.getElementById("dungeon.killsTnl").innerHTML = gameC.dungeons[game.currentDungeon].killsTnl;
         document.getElementById("dungeonKillsDisplay").style.display = "inline";
+        document.getElementById("dungeon").style.left = (56 * (3 - game.currentDungeon)) + "px";
     }
 }

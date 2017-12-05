@@ -12,7 +12,10 @@ body {
 
 #gameScreen {
     position:fixed;
-    background-color:#999999;
+    background-image:url(../img/mountain_background.png),url(../img/sky_background.png);
+    background-repeat: no-repeat,no-repeat;
+    background-size:contain,cover;
+    background-position: left bottom, left top;
     left:0px;
 	top:0px;
 	width:100%;
@@ -66,7 +69,7 @@ body {
 
 #areaMonster {
     position:absolute;
-    background-color:#00eeff;
+    /* background-color:#00eeff; */
     left:50%;
     width:50%;
     height:100%;
@@ -81,11 +84,39 @@ body {
     background-color: #ffc0cb;
 }
 
-#dungeon {
+.dungeonArrow {
     position: absolute;
-    margin: auto;
+    top: 1%;
+    width: 56px;
+    height: 56px;
+    background: url(../img/arrow.png) no-repeat center;
+    background-size: 53px 53px;
+    cursor: pointer;
+}
+
+.dungeonArrow:hover {
+    background-size: 56px 56px;
+}
+
+.dungeonArrow:active {
+    background-size: 53px 53px;
+}
+
+#dungeonLeft {
+    left: 129px;
+    transform: rotate(90deg);
+}
+
+#dungeonRight {
+    left: 465px;
+    transform: rotate(-90deg);
+}
+
+#dungeonHolder {
+    position: absolute;
     overflow: hidden;
-    width: 55%;
+    white-space: nowrap;
+    width: 280px;
     height: 56px;
     top: 1%;
     left: 50%;
@@ -93,10 +124,17 @@ body {
     transform: translate(-50%);
 }
 
+#dungeon {
+    position: relative;
+    left: 112px;
+    white-space: nowrap;
+    /* background-color: #0000ff; */
+}
+
 .levelSelect {
     margin:0 auto;
     display: inline-block;
-    min-width: 48px;
+    width: 48px;
     background-color: #ffc0cb;
     text-align: center;
     cursor:crosshair;
@@ -111,13 +149,17 @@ body {
     border: 4px solid red;
 }
 
+#dungeonHome {
+    width: 116px;
+}
+
 #dungeonKillsDisplay {
     position: absolute;
     top: 10%;
     left: 50%;
     transform: translate(-50%);
     display: inline-block;
-    background-color:#ffff00;
+    /* background-color:#ffff00; */
     background-image: url(../img/skull.png);
     background-repeat: no-repeat;
     background-size:40px 40px;
@@ -160,7 +202,7 @@ body {
     height: 300px;
     top: 50%;
     left: 50%;
-    background-color: purple;
+    /* background-color: purple; */
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -171,7 +213,7 @@ body {
 .monster {
     width:100%;
 	height:100%;
-    background-color:#ffff00;
+    /* background-color:#ffff00; */
 	/* background-image:url(../img/goldbar.png); */
     background-repeat:no-repeat;
     background-position:center;
