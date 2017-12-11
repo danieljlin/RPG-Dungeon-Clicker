@@ -16,36 +16,55 @@
 
 <body>
     <div id="gameScreen">
-        <div id="areaStats">
-            <div id="goldDisplay">
-                <span id="player.gold">0</span>
-            </div>
-            <div id="expDisplay">
-                Level <span id="player.level">0</span>: 
-                <span id="player.exp">0</span>/<span id="player.expTnl">5</span>
-            </div>
-            <div id="damageDisplay">
-                <span id="player.damage">0</span>
+        <div id="leftSide">
+            <div id="areaStats">
+                <div id="goldDisplay">
+                    <span id="player.gold">0</span>
+                </div>
+                <div id="expDisplay">
+                    Level <span id="player.level">0</span>:
+                    <span id="player.exp">0</span>/<span id="player.expTnl">5</span>
+                </div>
+                <div id="damageDisplay">
+                    <span id="player.damage">0</span>
+                </div>
+                <div id="healDisplay">
+                    <span id="player.heal">1</span>
+                </div>
             </div>
         </div>
 
-        <div id="areaMonster">
-            <div id="dungeonHome" class="levelSelect ">Home</div>
-            <div id="dungeonHolder">
-                <div id="dungeon">
+        <div id="rightSide">
+            <div id="areaMonster">
+                <div id="areaDungeon">
+                    <div id="dungeon0" class="levelSelect " data-dungeon=0>Home</div>
+                    <div id="dungeonHolder">
+                        <div id="dungeon">
+                        </div>
+                    </div>
+                    <div id="dungeonLeft" class="dungeonArrow"></div>
+                    <div id="dungeonRight" class="dungeonArrow"></div>
+                </div>
+                <div id="dungeonKillsDisplay">
+                    <span id="dungeon.kills">0</span>/<span id="dungeon.killsTnl">5</span>
+                </div>
+                <div id="monsterStatsDisplay">
+                    <div id="monsterHpBar"></div>
+                    <span id="monster.id">Trainer</span>
+                    <span id="monster.hp">Invincible</span>
+                </div>
+                <div id="containerMonster">
                 </div>
             </div>
-            <div id="dungeonLeft" class="dungeonArrow"></div>
-            <div id="dungeonRight" class="dungeonArrow"></div>
-            <div id="dungeonKillsDisplay">
-                <span id="dungeon.kills">0</span>/<span id="dungeon.killsTnl">5</span>
-            </div>
-            <div id="monsterStatsDisplay">
-                <div id="monsterHpBar"></div>
-                <span id="monster.id">Trainer</span>
-                <span id="monster.hp">Invincible</span>
-            </div>
-            <div id="containerMonster">
+            <div id="areaPlayer">
+                <div id="playerHpRed"></div>
+                <div id="playerHpBar"></div>
+                <div id="playerHpDisplay">
+                    <span id="player.hp">5</span><span id="player.hpMax">/10 HP</span>
+                </div>
+                <div id="containerPlayer">
+                    <div id="player"></div>
+                </div>
             </div>
         </div>
     </div>

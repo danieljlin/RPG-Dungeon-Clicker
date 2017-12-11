@@ -8,6 +8,8 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 3vw;
 }
 
 #gameScreen {
@@ -16,22 +18,27 @@ body {
     background-repeat: no-repeat,no-repeat;
     background-size:contain,cover;
     background-position: left bottom, left top;
-    left:0px;
-	top:0px;
+    left:0;
+	top:0;
 	width:100%;
 	height:100%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size:40px;
+}
+
+#leftSide{
+    position:absolute;
+    width:50%;
+    height:100%;
 }
 
 #areaStats {
     position:absolute;
-    background-color:#00ff00;
-    outline: 10px solid #0000ff;
-    margin-left:1%;
-    margin-top:15px;
-    width:48%;
-    height:80px;
+    background-color:rgb(194, 111, 55);
+    margin-left: 0.5vw;
+    margin-top: 0.5vw;
+    border: 0.5vw solid #0000ff;
+    width:48vw;
+    height:6vw;
+    line-height: 100%;
 }
 
 #goldDisplay {
@@ -39,94 +46,108 @@ body {
     background-color:#ffff00;
     background-image: url(../img/goldcoin.png);
     background-repeat: no-repeat;
-    background-size:40px 40px;
-    padding-left: 40px;
-    line-height: 100%;
+    background-size: 3vw 3vw;
+    padding-left: 3vw;
 }
 
 #expDisplay {
     position: absolute;
-    background-color:#ff00ff;
+    background-color:rgb(135, 208, 250);
     background-image: url(../img/book.png);
     background-repeat: no-repeat;
-    background-size:40px 40px;
+    background-size: 3vw 3vw;
     bottom:0;
-    padding-left: 40px;
-    line-height: 100%;
+    padding-left: 3vw;
 }
 
 #damageDisplay {
     position: absolute;
-    background-color:#ff0000;
+    background-color:red;
     background-image: url(../img/sword.png);
     background-repeat: no-repeat;
-    background-size:40px 40px;
+    background-size:3vw 3vw;
     background-position-x: 100%;
     right:0;
-    padding-right: 40px;
-    line-height: 100%;
+    padding-right: 3vw;
 }
 
-#areaMonster {
+#healDisplay {
+    position: absolute;
+    background-color:limegreen;
+    background-image: url(../img/heal.png);
+    background-repeat: no-repeat;
+    background-size:3vw 3vw;
+    background-position-x: 100%;
+    right:0;
+    bottom:0;
+    padding-right: 3vw;
+}
+
+#rightSide {
     position:absolute;
-    /* background-color:#00eeff; */
     left:50%;
     width:50%;
     height:100%;
 }
 
-#dungeonHome {
+#areaDungeon {
+    position: absolute;
+    top: 0.5vw;
+    left: 0;
+    width:100%;
+    height:4vw;
+    font-size: 2vw;
+}
+
+#dungeon0 {
     position: absolute;
     margin:0 auto;
-    display: inline-block;
-    top: 1%;
-    left: 5px;
+    /* display: inline-block; */
+    left: 0.5vw;
     background-color: #ffc0cb;
-}
-
-.dungeonArrow {
-    position: absolute;
-    top: 1%;
-    width: 56px;
-    height: 56px;
-    background: url(../img/arrow.png) no-repeat center;
-    background-size: 53px 53px;
-    cursor: pointer;
-}
-
-.dungeonArrow:hover {
-    background-size: 56px 56px;
-}
-
-.dungeonArrow:active {
-    background-size: 53px 53px;
+    width: 7vw;
+    height: 3.5vw;
 }
 
 #dungeonLeft {
-    left: 129px;
+    left: 11vw;
+    width: 4vw;
+    height: 100%;
     transform: rotate(90deg);
 }
 
 #dungeonRight {
-    left: 465px;
+    left: 35vw;
+    width: 4vw;
+    height: 4vw;
     transform: rotate(-90deg);
 }
+
+.dungeonArrow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url(../img/arrow.png) no-repeat center;
+    background-size: 95%;
+    cursor: pointer; 
+}
+.dungeonArrow:hover { background-size: 100%; }
+.dungeonArrow:active { background-size: 95%; }
 
 #dungeonHolder {
     position: absolute;
     overflow: hidden;
     white-space: nowrap;
-    width: 280px;
-    height: 56px;
-    top: 1%;
+    width: 20vw;
+    height: 4vw;
     left: 50%;
-    background-color: #ff9900;
     transform: translate(-50%);
+    background-color: #ff9900;
 }
 
 #dungeon {
     position: relative;
-    left: 112px;
+    left: 8vw;
     white-space: nowrap;
     /* background-color: #0000ff; */
 }
@@ -134,46 +155,43 @@ body {
 .levelSelect {
     margin:0 auto;
     display: inline-block;
-    width: 48px;
+    width: 3.5vw;
+    height: 3.5vw;
     background-color: #ffc0cb;
     text-align: center;
     cursor:crosshair;
-    border: 4px solid white;
+    border: 0.25vw solid white;
 }
+.levelSelect:hover { border: 0.25vw solid black; }
+.levelSelect:active { border: 0.25vw solid red; }
 
-.levelSelect:hover {
-    border: 4px solid black;
-}
-
-.levelSelect:active {
-    border: 4px solid red;
-}
-
-#dungeonHome {
-    width: 116px;
+#areaMonster {
+    position:absolute;
+    width:100%;
+    height:100%;
 }
 
 #dungeonKillsDisplay {
     position: absolute;
-    top: 10%;
+    top: 6vw;
     left: 50%;
     transform: translate(-50%);
     display: inline-block;
-    /* background-color:#ffff00; */
+    background-color:#ffff00;
     background-image: url(../img/skull.png);
     background-repeat: no-repeat;
-    background-size:40px 40px;
-    background-position: -2px 2px;
-    padding-left: 40px;
+    background-size: 3vw 3vw;
+    background-position: -0.1vw 0.1vw;
+    padding-left: 3vw;
     line-height: 100%;
 }
 
 #monsterStatsDisplay {
     position: absolute;
     margin: auto;
-    width: 75%;
-    height: 50px;
-    top: 21%;
+    width: 40vw;
+    height: 4vw;
+    top: 12vw;
     left: 50%;
     background-color: #ff0000;
     transform: translate(-50%, -50%);
@@ -198,8 +216,8 @@ body {
 #containerMonster {
     position: absolute;
     margin: auto;
-    width: 300px;
-    height: 300px;
+    width: 20vw;
+    height: 20vw;
     top: 50%;
     left: 50%;
     /* background-color: purple; */
@@ -227,5 +245,80 @@ body {
 }
 
 .monster:active {
+	background-size:95%;
+}
+
+#areaPlayer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 25%;
+}
+
+#playerHpRed {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    opacity: 0.75;
+}
+
+#playerHpBar {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background-color: #00ff00;
+    opacity: 0.75;
+}
+
+/* #playerHpDisplay {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 80%;
+    height: 3vw;
+} */
+
+#player\.hp {
+    position: absolute;
+    width:50%;
+    height: 3vw;
+    left: 25%;
+    transform: translate(-50%);
+    text-align: center;
+    line-height: 100%;
+}
+
+#player\.hpMax {
+    position: absolute;
+    width:50%;
+    height: 3vw;
+    left: 75%;
+    transform: translate(-50%);
+    text-align: center;
+    line-height: 100%;
+}
+
+#containerPlayer {
+    position: absolute;
+    height: 100%;
+    width: 25vh;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#player {
+    width: 100%;
+    height: 100%;
+    background: url(../img/player.png) no-repeat center;
+    background-size: 95%;
+    cursor: url(../img/heal.png), auto;
+}
+
+#player:hover {
+	background-size:100%;
+}
+
+#player:active {
 	background-size:95%;
 }
